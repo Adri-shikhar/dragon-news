@@ -3,6 +3,13 @@ import Link from "next/link";
 import Mylink from "../Navbar/Mylink";
 import CategoryLink from "./CategoryLink";  
 
+export const generateMetadata = async () => {
+  return {
+    title: "All Categories",
+    description: "Explore news by categories on Dragon News.",
+  };
+}
+
 const Categories = ({ categories = [] }) => {
   return (
     <aside>
