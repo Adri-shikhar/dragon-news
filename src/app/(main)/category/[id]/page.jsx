@@ -64,7 +64,6 @@ const Category = async ({ params }) => {
                   ? news.author
                   : news.author?.name || "Unknown";
               const published = news.author?.published_date || "";
-              console.log(news._id);
 
               return (
                 <article

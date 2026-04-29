@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from '../Components/Header/Header';
 import Navbar from '../Components/Navbar/Navbar';
-import Marquee from 'react-fast-marquee';
 import NewsMarqueee from '../Components/Marquee/Marquee';
 
 
@@ -9,7 +8,7 @@ const MainLayout = ({ children }) => {
     return (
         <div>
             <Header />
-            <NewsMarqueee/>
+             <NewsMarqueee/>
             <Navbar />
             {children}
         </div>
