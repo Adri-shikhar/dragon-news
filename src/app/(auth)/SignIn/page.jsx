@@ -1,18 +1,28 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import React from "react";
 import { useForm } from "react-hook-form";
 
 const Signinpage = () => {
+  const { handleSubmit, register } = useForm();
 
-    const {handleSubmit, register} = useForm()
+  const onSubmit = async (formdata) => {
+    console.log(formdata);
 
-    const onSubmit = (data) => {
-        console.log(data)
-    }
+    const { data, error } = await authClient.signIn.email({
+      email: formdata.email, // required
+      password: formdata.password, // required
+      rememberMe: true,
+      callbackURL: "/",
+    });
+  };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-50">
-      <form onSubmit={handleSubmit(onSubmit)} className="bg-white p-8 rounded shadow-md w-full max-w-md space-y-6 ">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="bg-white p-8 rounded shadow-md w-full max-w-md space-y-6 "
+      >
         <h1 className="text-2xl font-bold mb-4 text-center">Login</h1>
         <div>
           <label className="block mb-1 font-medium">Email</label>
@@ -22,7 +32,6 @@ const Signinpage = () => {
             className="w-full border px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-orange-400"
             placeholder="you@email.com"
             {...register("email")}
-            
           />
         </div>
         <div>
