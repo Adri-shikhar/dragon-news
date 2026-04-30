@@ -1,14 +1,16 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Mylink from "./Mylink";
 import { authClient } from "@/lib/auth-client";
+import Loading from "@/app/Components/Loading";
 
 const Navbar = () => {
   const router = useRouter();
   const { data: session } = authClient.useSession();
   const user = session?.user;
+  const [loading, setLoading] = useState(false);
   console.log("data session:", session);
 
   return (
@@ -26,15 +28,22 @@ const Navbar = () => {
               <p className="text-gray-800 pr-4 text-center">
                 Welcome, {user?.name}
               </p>
-              <button
-                className="bg-red-500 text-white px-6 py-2 rounded transition-colors duration-200 hover:bg-red-600"
-                onClick={async () => {
-                  await authClient.signOut();
-                  router.push("/");
-                }}
-              >
-                Logout
-              </button>
+              <>
+                {loading && <Loading />}
+                <button
+                  className="bg-red-500 text-white px-6 py-2 rounded transition-colors duration-200 hover:bg-red-600"
+                  onClick={async () => {
+                    setLoading(true);
+                    await authClient.signOut();
+                    setTimeout(() => {
+                      setLoading(false);
+                      router.push("/");
+                    }, 2500);
+                  }}
+                >
+                  Logout
+                </button>
+              </>
             </div>
           ) : (
             <div className="flex justify-end">
