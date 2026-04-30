@@ -9,6 +9,12 @@ const db = client.db("dragon-news-test");
 
 export const auth = betterAuth({
   database: mongodbAdapter(db, { client }),
+  // Allow requests from both local dev and deployed URLs
+  trustedOrigins: [
+    "http://localhost:3000",
+    "http://localhost:3001",
+    process.env.BETTER_AUTH_URL,
+  ].filter(Boolean),
   emailAndPassword: {
     enabled: true,
   },

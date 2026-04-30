@@ -1,7 +1,8 @@
 import { createAuthClient } from "better-auth/react";
 
 export const authClient = createAuthClient({
-  baseURL: process.env.NEXT_PUBLIC_APP_URL || process.env.BETTER_AUTH_URL || "http://localhost:3000",
+  // No baseURL needed — BetterAuth uses the current origin automatically.
+  // This works for both localhost and any deployed URL (Vercel, etc.)
 });
 
 export const { signIn, signUp, useSession, signOut } = authClient;
