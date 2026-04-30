@@ -1,4 +1,4 @@
-
+"use client";
 import React from "react";
 import Image from "next/image";
 import {
@@ -13,18 +13,37 @@ import {
   FaEye,
   FaNewspaper,
 } from "react-icons/fa";
-;
-
-
+import { authClient } from "@/lib/auth-client";
 
 const RightSide = () => {
+  const handlegoogle = async () => {
+    try {
+      console.log("Attempting Google sign-in...");
+      const data = await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/",
+      });
+      console.log("Google sign-in result:", data);
+    } catch (err) {
+      console.error("Google sign-in error:", err);
+    }
+  };
+  const handlegithub = async () => {
+    try {
+      console.log("Attempting GitHub sign-in...");
+      const data = await authClient.signIn.social({
+        provider: "github",
+        callbackURL: "/",
+      });
+      console.log("GitHub sign-in result:", data);
+    } catch (err) {
+      console.error("GitHub sign-in error:", err);
+    }
+  };
 
- 
-  
 
   return (
-    <div >
-  
+    <div>
       {/* Right sidebar */}
       <div>
         {/* Login Card */}
@@ -32,14 +51,14 @@ const RightSide = () => {
           <p className="font-bold text-gray-800 mb-3">Login With</p>
           <div className="space-y-2">
             <button
-              id="login-google-btn"
+              onClick={handlegoogle}
               className="flex items-center gap-2 w-full px-3 py-2 border border-blue-500 rounded-md text-sm text-blue-600"
             >
               <FaGoogle className="text-blue-500" />
               Login with Google
             </button>
             <button
-              id="login-github-btn"
+              onClick={handlegithub}
               className="flex items-center gap-2 w-full px-3 py-2 border border-gray-400 rounded-md text-sm text-gray-700"
             >
               <FaGithub className="text-gray-700" />

@@ -14,7 +14,7 @@ const Registerpage = () => {
       name: formdata.name, // required
       email: formdata.email, // required
       password: formdata.password, // required
-      callbackURL: "/",
+      callbackURL: "http://localhost:3000/category/01",
     });
   };
 

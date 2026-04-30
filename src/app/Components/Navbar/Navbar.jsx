@@ -2,9 +2,8 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-
 import Mylink from "./Mylink";
-import { authClient, signOut } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
 
 const Navbar = () => {
   const router = useRouter();

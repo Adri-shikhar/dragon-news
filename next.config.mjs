@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  serverExternalPackages: ['mongodb', 'better-auth', '@better-auth/mongo-adapter'],
+  serverExternalPackages: ['mongodb', '@better-auth/mongo-adapter'],
   images: {
     remotePatterns: [
       {
