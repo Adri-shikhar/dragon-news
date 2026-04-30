@@ -24,11 +24,14 @@ export const auth = betterAuth({
     "http://localhost:3001",
     // Explicit override (local .env)
     process.env.BETTER_AUTH_URL,
-    // Stable production alias — set automatically by Vercel (e.g. dragon-news-phi-sage.vercel.app)
+    // Both known stable Vercel aliases for this project
+    "https://dragon-news-obito4.vercel.app",
+    "https://dragon-news-phi-sage.vercel.app",
+    // Stable production alias — auto-set by Vercel
     process.env.VERCEL_PROJECT_PRODUCTION_URL
       ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
       : null,
-    // Per-deployment preview URL — also set automatically by Vercel
+    // Per-deployment preview URL — auto-set by Vercel
     process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null,
   ].filter(Boolean),
   emailAndPassword: {
